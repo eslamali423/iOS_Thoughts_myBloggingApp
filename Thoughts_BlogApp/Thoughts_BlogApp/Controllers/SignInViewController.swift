@@ -9,13 +9,41 @@ import UIKit
 
 class SignInViewController: UIViewController {
 
+    
+    //MARK:- Outlets
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var emailField: UITextField!
+    
+    //MARK:- Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureLayouts()
+        
     }
     
+    func configureLayouts()  {
+        emailField.autocapitalizationType = .none
+        emailField.autocorrectionType = .no
+        passwordField.autocapitalizationType = .none
+        passwordField.autocorrectionType = .no
+        loginButton.layer.cornerRadius = 20
 
+    }
+    
+    
+    //MARK:- Did Tap Login Button
+    @IBAction func loginButton(_ sender: Any) {
+    }
+    
+    
+//MARK:- Did tap Create User Button
+    @IBAction func createUserButton(_ sender: Any) {
+        let registrationVc = storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
+        present(registrationVc, animated: true)
+     
+    }
+  
     /*
     // MARK: - Navigation
 

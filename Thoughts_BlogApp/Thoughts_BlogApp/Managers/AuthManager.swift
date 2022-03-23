@@ -15,7 +15,7 @@ class AuthManager {
     static let shared  = AuthManager()
     private let  auth =  Auth.auth()
     
-    private var isSignedIn : Bool  {
+     var isSignedIn : Bool  {
         return auth.currentUser != nil
     }
     
@@ -23,7 +23,7 @@ class AuthManager {
     
     //MARK:- Sign Up Function
     
-    func signUp(email : String, password: String, compeletion: @escaping (Bool)->Void) {
+    func signUp(email : String, password: String,username: String , compeletion: @escaping (Bool)->Void) {
         guard !email.trimmingCharacters(in: .whitespaces).isEmpty,
               !password.trimmingCharacters(in: .whitespaces).isEmpty, password.count >= 6 else {
             return
@@ -39,12 +39,35 @@ class AuthManager {
             }
             // account created successfully
             print("Acconut created succesfully ")
-            compeletion(true)
+            
+            // insert user to firebase
+            
+            if authResult?.user != nil {
+            let newUser = User(username: username, email: email, profilePictureUrl: nil)
+                DatabaseManager.shared.insert(user: newUser, userId: (authResult?.user.uid)!) { (isInserted) in
+                guard isInserted else  {
+                    compeletion(false)
+                    return
+                }
+                compeletion(true)
+                print("user inserted succcssfully")
+                
+            }
+
+            }
+           
         }
         
         
         
     }
+    
+    
+    //                DispatchQueue.main.async {
+    //                    let  vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
+    //                    vc.modalPresentationStyle = .fullScreen
+    //                    self.present(vc, animated: true)
+    //                }
     
     //MARK:- Sign In Function
     
