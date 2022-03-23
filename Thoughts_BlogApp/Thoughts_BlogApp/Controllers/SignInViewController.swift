@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignInViewController: UIViewController {
 
@@ -34,6 +35,25 @@ class SignInViewController: UIViewController {
     
     //MARK:- Did Tap Login Button
     @IBAction func loginButton(_ sender: Any) {
+        guard let email = emailField.text, !email.isEmpty,
+              let password =  passwordField.text, !password.isEmpty else {
+            return
+        }
+        AuthManager.shared.signIn(email: email, password: password) { (isSuccess, currentUserId) in
+            if isSuccess && currentUserId != "" {
+                DispatchQueue.main.async {
+                    UserDefaults.standard.setValue( currentUserId ,forKey: KCURRENTUSERID)
+                    print("\(currentUserId)")
+                    let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as!
+                       TabBarViewController
+                    tabBarVC.modalPresentationStyle = .fullScreen
+                    self.present(tabBarVC, animated: true)
+                }
+               
+            }
+        }
+        
+        
     }
     
     

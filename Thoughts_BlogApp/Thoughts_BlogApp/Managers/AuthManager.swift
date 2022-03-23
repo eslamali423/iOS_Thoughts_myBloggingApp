@@ -71,7 +71,7 @@ class AuthManager {
     
     //MARK:- Sign In Function
     
-    func signIn(email : String, password: String, compeletion: @escaping (Bool)->Void) {
+    func signIn(email : String, password: String, compeletion: @escaping (Bool,String)->Void) {
         guard !email.trimmingCharacters(in: .whitespaces).isEmpty,
               !password.trimmingCharacters(in: .whitespaces).isEmpty, password.count >= 6 else {
             return
@@ -81,13 +81,13 @@ class AuthManager {
             guard authResult != nil , error == nil else {
               // error login
                 print("error login ")
-                compeletion(false)
+                compeletion(false, "")
                 return
                 
             }
             // loged in successfully
             print("loged in successfully")
-            compeletion(true)
+            compeletion(true,"\(authResult?.user.uid)!")
         }
         
         
@@ -98,6 +98,8 @@ class AuthManager {
     func signOut(compeletion: (Bool)->Void) {
         do {
             try auth.signOut()
+           UserDefaults.standard.setValue( nil  ,forKey: KCURRENTUSERID)
+
             compeletion(true)
         }catch {
             print(error)

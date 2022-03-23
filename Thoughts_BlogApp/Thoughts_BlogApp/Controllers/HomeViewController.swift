@@ -15,7 +15,33 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func logoutButton(_ sender: Any) {
+       
+        let actionSheet = UIAlertController(title: "Sign Out", message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        actionSheet.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { _ in
+            AuthManager.shared.signOut { (isSuccess) in
+                if isSuccess {
+                    DispatchQueue.main.async {
+                        AuthManager.shared.signOut { (isSuccess) in
+                            if isSuccess {
+                              let  vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as!
+                                    SignInViewController
+                                vc.modalPresentationStyle = .fullScreen
+                                self.present(vc, animated: true, completion: nil)
+                            
+                            }
+                        }
+                    }
+                }
+            }
 
+        }))
+        self.present(actionSheet, animated: true, completion: nil)
+
+        
+    }
+    
     /*
     // MARK: - Navigation
 

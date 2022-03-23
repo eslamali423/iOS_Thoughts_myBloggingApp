@@ -9,3 +9,4 @@ import Foundation
 
 
 public let KUSERS = "Users"
+public let KCURRENTUSERID = "currentUserId"

@@ -58,7 +58,7 @@ class SignUpViewController: UIViewController {
             if isSuccess {
                 
                 print("Success")
-
+                self?.dismiss(animated: true)
                 
             }else {
                 print("failed to create account")
