@@ -17,7 +17,6 @@
 		284C4F8A27EB6C90003C38E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 284C4F8827EB6C90003C38E9 /* Main.storyboard */; };
 		284C4F8C27EB6C91003C38E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 284C4F8B27EB6C91003C38E9 /* Assets.xcassets */; };
 		284C4F8F27EB6C91003C38E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 284C4F8D27EB6C91003C38E9 /* LaunchScreen.storyboard */; };
-		284C4F9F27EB6DF3003C38E9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 284C4F9E27EB6DF3003C38E9 /* StoreKit.framework */; };
 		284C4FA127EB70CF003C38E9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284C4FA027EB70CF003C38E9 /* HomeViewController.swift */; };
 		284C4FA427EB70DB003C38E9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284C4FA327EB70DB003C38E9 /* ProfileViewController.swift */; };
 		284C4FA827EB7146003C38E9 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284C4FA727EB7146003C38E9 /* AuthManager.swift */; };
@@ -41,7 +40,6 @@
 		284C4F8B27EB6C91003C38E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		284C4F8E27EB6C91003C38E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		284C4F9027EB6C91003C38E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		284C4F9E27EB6DF3003C38E9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		284C4FA027EB70CF003C38E9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		284C4FA327EB70DB003C38E9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		284C4FA727EB7146003C38E9 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -59,7 +57,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				284C4F9F27EB6DF3003C38E9 /* StoreKit.framework in Frameworks */,
 				0F7B088BC5E6308DCF68283C /* Pods_Thoughts_BlogApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,7 +150,6 @@
 		284C4F9D27EB6DF3003C38E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				284C4F9E27EB6DF3003C38E9 /* StoreKit.framework */,
 				1C188671EE9D8CDC4B146D18 /* Pods_Thoughts_BlogApp.framework */,
 			);
 			name = Frameworks;
