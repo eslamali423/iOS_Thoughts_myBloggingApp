@@ -15,15 +15,22 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var BioLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
    
+    @IBOutlet weak var profilePictureImageView: UIImageView!
     var viewModel = ProfileViewModel()
-    
+
     
     //MARK:- Life Cycle
-    @IBOutlet weak var profilePictureImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        profilePictureImageView.layer.cornerRadius = profilePictureImageView.frame.size.width / 2
+        viewModel.fetchData()
+        getUserData()
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    
         viewModel.fetchData()
         getUserData()
         
@@ -37,7 +44,7 @@ class ProfileViewController: UIViewController {
             DispatchQueue.main.async { [self] in
                 self.usernameLabel.text = self.viewModel.currentUser?.username
                 self.BioLabel.text = self.viewModel.currentUser?.bio
-                
+            
                 if viewModel.currentUser?.profilePictureUrl != ""   {
                     guard let url = viewModel.currentUser?.profilePictureUrl else {
                         return
@@ -48,7 +55,7 @@ class ProfileViewController: UIViewController {
                     
                     
                 }
-                
+            
             }
             
             

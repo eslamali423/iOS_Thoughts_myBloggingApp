@@ -22,14 +22,26 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Edit Profile"
-        
+        profilePicureImageView.layer.cornerRadius = profilePicureImageView.frame.size.width / 2
         tableView.tableFooterView = UIView()
+       
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButton))
+        
+//        viewModel.fetchData()
+//        configureUserData()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    
         viewModel.fetchData()
         configureUserData()
-
+        
     }
 
     func configureUserData()  {
+      
         usernameField.text = viewModel.currentUser?.username
         bioField.text = viewModel.currentUser?.bio
         
@@ -47,6 +59,36 @@ class SettingsTableViewController: UITableViewController {
             
             
         }
+    
+    //MARK:- Did Tap Save Button
+    @objc func saveButton()  {
+        guard  let currentId = UserDefaults.standard.string(forKey: KCURRENTUSERID) else {return}
+
+        if let username =  usernameField.text, !username.isEmpty,
+           let bio = bioField.text, !bio.isEmpty {
+            
+            guard var currentUser =  self.viewModel.currentUser else {return}
+            currentUser.bio = bio
+            currentUser.username = username
+            
+            DatabaseManager.shared.saveUserToFirestore(user: currentUser , userId: currentId) { (isSuccess) in
+                if isSuccess{
+                    print("OK")
+                }else {
+                    print("NO")
+                }
+            }
+            DatabaseManager.shared.saveUserLocally(currentUser, userId: currentId)
+            navigationController?.popViewController(animated: true)
+            
+            
+            
+            
+        }
+        
+        
+        
+    }
     
     
     

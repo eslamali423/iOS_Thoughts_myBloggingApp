@@ -45,7 +45,7 @@ class SignInViewController: UIViewController {
                    // set values in user defaults
                     DatabaseManager.shared.downloadUserFormFirestore(userID: currentUserId) { (user) in
                         guard let user =  user  else {return}
-                        DatabaseManager.shared.saveUserLocally(user)
+                        DatabaseManager.shared.saveUserLocally(user, userId: currentUserId)
                     }
                     
 //                    UserDefaults.standard.set( currentUserId ,forKey: KCURRENTUSERID)

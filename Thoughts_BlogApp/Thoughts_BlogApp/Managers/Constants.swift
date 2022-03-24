@@ -19,3 +19,5 @@ public let KEMAIL = "email"
 public let KBIO = "bio"
 public let KPROFILEURL = "profileUrl"
 public let KCURRENTUSER = "currentUser"
+
+
