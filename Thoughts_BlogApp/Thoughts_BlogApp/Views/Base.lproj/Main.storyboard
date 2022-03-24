@@ -269,8 +269,8 @@
             <objects>
                 <navigationController id="zIg-oy-1Sv" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" id="swo-pS-DYE"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fva-fS-xcQ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="fva-fS-xcQ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -281,24 +281,82 @@
             </objects>
             <point key="canvasLocation" x="148" y="289"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--Profile-->
         <scene sceneID="QRa-ee-0Gw">
             <objects>
                 <viewController id="1xM-A3-lds" customClass="ProfileViewController" customModule="Thoughts_BlogApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zqg-fB-VWi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="yIS-I5-KTY">
+                                <rect key="frame" x="147" y="140" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="V1I-QT-qp1"/>
+                                    <constraint firstAttribute="width" constant="120" id="uXt-KG-1T7"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcF-9M-4w1">
+                                <rect key="frame" x="20" y="300" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qpd-dI-9Dl">
+                                <rect key="frame" x="0.0" y="328.5" width="414" height="484.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="kai-zV-dFD">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kai-zV-dFD" id="fnc-pN-TZ4">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Giz-qn-db1">
+                                <rect key="frame" x="20" y="268" width="374" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="7ye-hx-PAv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wcF-9M-4w1" firstAttribute="leading" secondItem="Giz-qn-db1" secondAttribute="leading" id="21U-cO-2ob"/>
+                            <constraint firstItem="qpd-dI-9Dl" firstAttribute="leading" secondItem="7ye-hx-PAv" secondAttribute="leading" id="66l-EC-azo"/>
+                            <constraint firstItem="yIS-I5-KTY" firstAttribute="top" secondItem="7ye-hx-PAv" secondAttribute="top" id="Ahz-e8-1sr"/>
+                            <constraint firstItem="wcF-9M-4w1" firstAttribute="top" secondItem="Giz-qn-db1" secondAttribute="bottom" constant="8" id="CrC-tk-UZE"/>
+                            <constraint firstItem="7ye-hx-PAv" firstAttribute="trailing" secondItem="qpd-dI-9Dl" secondAttribute="trailing" id="KPn-Qb-398"/>
+                            <constraint firstItem="Giz-qn-db1" firstAttribute="centerX" secondItem="yIS-I5-KTY" secondAttribute="centerX" id="LyS-4x-GLV"/>
+                            <constraint firstItem="Giz-qn-db1" firstAttribute="top" secondItem="yIS-I5-KTY" secondAttribute="bottom" constant="8" id="NFV-3p-Cu9"/>
+                            <constraint firstItem="Giz-qn-db1" firstAttribute="leading" secondItem="7ye-hx-PAv" secondAttribute="leading" constant="20" id="Wa6-yd-B2K"/>
+                            <constraint firstItem="7ye-hx-PAv" firstAttribute="bottom" secondItem="qpd-dI-9Dl" secondAttribute="bottom" id="XFa-uA-Izg"/>
+                            <constraint firstItem="7ye-hx-PAv" firstAttribute="trailing" secondItem="Giz-qn-db1" secondAttribute="trailing" constant="20" id="XgQ-2Z-AkS"/>
+                            <constraint firstItem="qpd-dI-9Dl" firstAttribute="top" secondItem="wcF-9M-4w1" secondAttribute="bottom" constant="8" id="chd-7d-fnk"/>
+                            <constraint firstItem="wcF-9M-4w1" firstAttribute="trailing" secondItem="Giz-qn-db1" secondAttribute="trailing" id="gac-Dz-SdZ"/>
+                            <constraint firstItem="wcF-9M-4w1" firstAttribute="centerX" secondItem="Giz-qn-db1" secondAttribute="centerX" id="inf-aH-TJE"/>
+                            <constraint firstItem="yIS-I5-KTY" firstAttribute="centerX" secondItem="7ye-hx-PAv" secondAttribute="centerX" id="wk5-Ck-Rlj"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="zCT-X8-Pew"/>
+                    <navigationItem key="navigationItem" title="Profile" id="zCT-X8-Pew"/>
+                    <connections>
+                        <outlet property="BioLabel" destination="wcF-9M-4w1" id="bak-US-2tz"/>
+                        <outlet property="profilePictureImageView" destination="yIS-I5-KTY" id="w2q-OQ-8KL"/>
+                        <outlet property="tableView" destination="qpd-dI-9Dl" id="0hX-IX-Amp"/>
+                        <outlet property="usernameLabel" destination="Giz-qn-db1" id="1Fo-Ck-SHi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q0P-Lz-IJC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="954" y="289"/>
+            <point key="canvasLocation" x="953.62318840579712" y="288.61607142857139"/>
         </scene>
     </scenes>
     <resources>
+        <image name="avatar" width="300" height="250"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="logo2" width="567" height="440"/>
         <image name="person" catalog="system" width="128" height="117"/>

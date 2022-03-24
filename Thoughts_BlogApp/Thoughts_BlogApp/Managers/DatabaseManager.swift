@@ -29,15 +29,51 @@ class DatabaseManager {
         
     }
     
-    public func insert (user : User,userId : String , completion: @escaping (Bool)->Void) {
+    
+    
+    //MARK:- uploade user data to firestore database after registration statment
+    public func saveUserToFirestore (user : User,userId : String , completion: @escaping (Bool)->Void) {
       let data =  [
-        "username"  :   user.username,
-        "email"  : user.email,
+        KUSERNAME  :   user.username,
+        KEMAIL  : user.email,
+        KBIO : user.bio,
+        KPROFILEURL : ""
  
       ]
         database.collection(KUSERS).document(userId).setData(data) { error in
             completion(error == nil)
             
+        }
+    }
+
+    
+    //MARK:- download user data form firestore database after login statment
+    func downloadUserFormFirestore(userID : String, completion: @escaping (User?)->Void)  {
+        database.collection(KUSERS).document(userID).getDocument { (snapshot, error) in
+            guard let document = snapshot?.data() as? [String:String] , error == nil else {
+                print("no data Found")
+                print(error?.localizedDescription)
+                return
+            }
+           
+            let username =  document[KUSERNAME]
+            let email = document[KEMAIL]
+            let bio = document[KBIO]
+            let profileUrl = document[KPROFILEURL]
+            let user =  User(username: username!, email: email!, bio: bio!, profilePictureUrl: profileUrl!)
+          
+            completion(user)
+   
+        }
+    }
+    //MARK:- save User Locally
+    func saveUserLocally(_ user : User) {
+        do{
+            let data = try  JSONEncoder().encode(user)
+            UserDefaults.standard.set(data, forKey: KCURRENTUSER)
+            
+        }catch {
+            print(error.localizedDescription)
         }
     }
     
