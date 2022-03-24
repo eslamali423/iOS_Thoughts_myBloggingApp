@@ -29,6 +29,8 @@
 		28F710BC27EC8F4D00AE22D5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F710BB27EC8F4D00AE22D5 /* ProfileViewModel.swift */; };
 		28F710C027EC954900AE22D5 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F710BF27EC954900AE22D5 /* SettingsTableViewController.swift */; };
 		28F710F327ECAE8700AE22D5 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F710F227ECAE8700AE22D5 /* Global.swift */; };
+		28F710F727ECCE0900AE22D5 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F710F627ECCE0900AE22D5 /* NewPostViewController.swift */; };
+		28F710FA27ECD79400AE22D5 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F710F927ECD79400AE22D5 /* PostViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		28F710BB27EC8F4D00AE22D5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		28F710BF27EC954900AE22D5 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		28F710F227ECAE8700AE22D5 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		28F710F627ECCE0900AE22D5 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		28F710F927ECD79400AE22D5 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		5BF215F6FFBD0D7A26203165 /* Pods-Thoughts_BlogApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thoughts_BlogApp.debug.xcconfig"; path = "Target Support Files/Pods-Thoughts_BlogApp/Pods-Thoughts_BlogApp.debug.xcconfig"; sourceTree = "<group>"; };
 		8D2941559D0111BF1116B44B /* Pods-Thoughts_BlogApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thoughts_BlogApp.release.xcconfig"; path = "Target Support Files/Pods-Thoughts_BlogApp/Pods-Thoughts_BlogApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,11 +122,12 @@
 			isa = PBXGroup;
 			children = (
 				284C4FA027EB70CF003C38E9 /* HomeViewController.swift */,
-				284C4FA327EB70DB003C38E9 /* ProfileViewController.swift */,
 				284C4FAA27EB7155003C38E9 /* SignInViewController.swift */,
 				284C4FAD27EB715E003C38E9 /* SignUpViewController.swift */,
 				284C4FB027EB71DB003C38E9 /* TabBarViewController.swift */,
+				284C4FA327EB70DB003C38E9 /* ProfileViewController.swift */,
 				28F710BF27EC954900AE22D5 /* SettingsTableViewController.swift */,
+				28F710F627ECCE0900AE22D5 /* NewPostViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -171,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				28F710BB27EC8F4D00AE22D5 /* ProfileViewModel.swift */,
+				28F710F927ECD79400AE22D5 /* PostViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -304,6 +310,7 @@
 				284B196D27EB7B0000C15105 /* StorageManager.swift in Sources */,
 				284B196A27EB7A3C00C15105 /* DatabaseManager.swift in Sources */,
 				289E2DEF27EB7F5D0019EE75 /* BlogPost.swift in Sources */,
+				28F710F727ECCE0900AE22D5 /* NewPostViewController.swift in Sources */,
 				284C4F8327EB6C90003C38E9 /* AppDelegate.swift in Sources */,
 				284C4FAE27EB715E003C38E9 /* SignUpViewController.swift in Sources */,
 				284C4FA427EB70DB003C38E9 /* ProfileViewController.swift in Sources */,
@@ -316,6 +323,7 @@
 				284C4FA127EB70CF003C38E9 /* HomeViewController.swift in Sources */,
 				284C4FA827EB7146003C38E9 /* AuthManager.swift in Sources */,
 				28F710F327ECAE8700AE22D5 /* Global.swift in Sources */,
+				28F710FA27ECD79400AE22D5 /* PostViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,34 +27,35 @@ class SettingsTableViewController: UITableViewController {
        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButton))
         
-//        viewModel.fetchData()
-//        configureUserData()
+        viewModel.fetchData()
+        configureUserData()
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
         viewModel.fetchData()
         configureUserData()
         
     }
 
     func configureUserData()  {
-      
-        usernameField.text = viewModel.currentUser?.username
-        bioField.text = viewModel.currentUser?.bio
-        
-        if viewModel.currentUser?.profilePictureUrl != ""   {
-            guard let url = viewModel.currentUser?.profilePictureUrl else {
-                return
-            }
-            StorageManager.shared.downloadImage(imageUrl: url) { (image) in
-                self.profilePicureImageView.image = image
-            }
+        DispatchQueue.main.async {
+            self.usernameField.text = self.viewModel.currentUser?.username
+            self.bioField.text = self.viewModel.currentUser?.bio
             
-            
+            if self.viewModel.currentUser?.profilePictureUrl != ""   {
+                guard let url = self.viewModel.currentUser?.profilePictureUrl else {
+                    return
+                }
+                StorageManager.shared.downloadImage(imageUrl: url) { (image) in
+                    self.profilePicureImageView.image = image
+                }
+                
+                
+            }
         }
+      
             
             
             
@@ -117,8 +118,32 @@ class SettingsTableViewController: UITableViewController {
     
     
     //MARK:- Logout Button
-    @IBOutlet weak var logoutButton: UIView!
-    // MARK: - Table view data source
+    
+    @IBAction func logoutButton(_ sender: Any) {
+        let actionSheet = UIAlertController(title: "Sign Out", message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        actionSheet.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { _ in
+            AuthManager.shared.signOut { (isSuccess) in
+                if isSuccess {
+                    DispatchQueue.main.async {
+                        AuthManager.shared.signOut { (isSuccess) in
+                            if isSuccess {
+                              let  vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as!
+                                    SignInViewController
+                                vc.modalPresentationStyle = .fullScreen
+                                self.present(vc, animated: true, completion: nil)
+                            
+                            }
+                        }
+                    }
+                }
+            }
+
+        }))
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    
 
     //MARK:- upload image
     func uploadImage (image : UIImage){
@@ -138,7 +163,7 @@ class SettingsTableViewController: UITableViewController {
             
             DatabaseManager.shared.saveUserToFirestore(user: currentUser , userId: currentId) { (isSuccess) in
                 if isSuccess{
-                    print("OK")
+                    print("OK settings")
                 }else {
                     print("NO")
                 }

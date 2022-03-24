@@ -28,19 +28,19 @@ class ProfileViewController: UIViewController {
         getUserData()
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
         viewModel.fetchData()
         getUserData()
         
     }
+  
     
     
     //MARK:- Get User Data Form Firestore
     func getUserData()  {
-        if let data =  UserDefaults.standard.data(forKey: KCURRENTUSER)  {
-            
+       
             DispatchQueue.main.async { [self] in
                 self.usernameLabel.text = self.viewModel.currentUser?.username
                 self.BioLabel.text = self.viewModel.currentUser?.bio
@@ -55,11 +55,13 @@ class ProfileViewController: UIViewController {
                     
                     
                 }
+                    
+                
             
             }
             
             
-        }
+        
         
     }
     

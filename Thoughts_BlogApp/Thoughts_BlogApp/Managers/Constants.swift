@@ -19,5 +19,14 @@ public let KEMAIL = "email"
 public let KBIO = "bio"
 public let KPROFILEURL = "profileUrl"
 public let KCURRENTUSER = "currentUser"
+public let KPOSTS = "Posts"
+
+
+
+public let KPOSTID = "postId"
+public let KUSERID = "userId"
+public let KPOSTTEXT = "text"
+public let KPOSTDATE = "date"
+public let KPOSTPICTURE = "image"
 
 

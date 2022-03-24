@@ -8,9 +8,10 @@
 import Foundation
 
 struct BlogPost {
-    let identifier : String 
-    let title : String
-    let timestamp : TimeInterval
+    let id : String
+    let username : String
+    let userProfilePictureUrl : String
     let text : String
-    let headerImageUrl : URL?
+    let date : Date
+    
 }

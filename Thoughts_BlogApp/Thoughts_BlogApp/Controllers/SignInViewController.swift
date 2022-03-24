@@ -44,7 +44,10 @@ class SignInViewController: UIViewController {
                 DispatchQueue.main.async {
                    // set values in user defaults
                     DatabaseManager.shared.downloadUserFormFirestore(userID: currentUserId) { (user) in
-                        guard let user =  user  else {return}
+                        guard let user =  user  else {
+                            print("cant get user ")
+                            return}
+                        print("get user form firestire")
                         DatabaseManager.shared.saveUserLocally(user, userId: currentUserId)
                     }
                     

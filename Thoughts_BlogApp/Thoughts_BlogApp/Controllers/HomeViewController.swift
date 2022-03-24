@@ -9,37 +9,45 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    //MARK:- Outlets
+    
+    private let createPostButton : UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor(named: "orangeApp")
+        button.tintColor = .white
+        button.setImage(UIImage(systemName: "square.and.pencil", withConfiguration: UIImage.SymbolConfiguration(pointSize: 32, weight: .medium)),for: .normal)
+        button.layer.cornerRadius = 35
+        button.layer.shadowColor = UIColor.label.cgColor
+        button.layer.shadowOpacity = 0.4
+        button.layer.shadowRadius = 10
+        
+        return button
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.addSubview(createPostButton)
+        title =  "Home"
+        
+        
+        createPostButton.addTarget(self, action: #selector(didTapCreatePostButton), for: .touchUpInside)
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        createPostButton.frame = CGRect(x: view.frame.width - 80 - 16, y: view.frame.height - 80 - 16 - view.safeAreaInsets.bottom, width: 70  , height: 70)
     }
     
     @IBAction func logoutButton(_ sender: Any) {
        
-        let actionSheet = UIAlertController(title: "Sign Out", message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        actionSheet.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { _ in
-            AuthManager.shared.signOut { (isSuccess) in
-                if isSuccess {
-                    DispatchQueue.main.async {
-                        AuthManager.shared.signOut { (isSuccess) in
-                            if isSuccess {
-                              let  vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as!
-                                    SignInViewController
-                                vc.modalPresentationStyle = .fullScreen
-                                self.present(vc, animated: true, completion: nil)
-                            
-                            }
-                        }
-                    }
-                }
-            }
-
-        }))
-        self.present(actionSheet, animated: true, completion: nil)
-
-        
+ 
+    }
+    
+    @objc func didTapCreatePostButton () {
+        let newPostVC =  storyboard?.instantiateViewController(identifier: "NewPostViewController") as! NewPostViewController
+        navigationController?.pushViewController(newPostVC, animated: true)
     }
     
     /*

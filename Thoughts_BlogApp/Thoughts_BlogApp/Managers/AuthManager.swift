@@ -87,6 +87,7 @@ class AuthManager {
         do {
             try auth.signOut()
            UserDefaults.standard.set( nil  ,forKey: KCURRENTUSER)
+            UserDefaults.standard.set( nil  ,forKey: KCURRENTUSERID)
 
             compeletion(true)
         }catch {

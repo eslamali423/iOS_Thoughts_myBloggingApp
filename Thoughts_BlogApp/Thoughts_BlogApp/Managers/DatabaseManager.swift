@@ -66,15 +66,43 @@ class DatabaseManager {
    
         }
     }
+    
     //MARK:- save User Locally
-    func saveUserLocally(_ user : User) {
+    func saveUserLocally(_ user : User, userId : String) {
         do{
             let data = try  JSONEncoder().encode(user)
             UserDefaults.standard.set(data, forKey: KCURRENTUSER)
+            UserDefaults.standard.set( userId ,forKey: KCURRENTUSERID)
+    //        UserDefaults.standard.set( userId ,forKey: KCURRENTUSERNAME)
+            
             
         }catch {
             print(error.localizedDescription)
         }
+    }
+    
+    //MARK:- Save Post To Firestore
+    func savePostToFirestore(userId : String, post: BlogPost ,completion: @escaping (Bool)->Void)  {
+      let data = [
+        KPOSTID : post.id,
+        KUSERID : userId,
+        KPOSTTEXT  : post.text,
+        KPOSTDATE : "\(post.date)",
+        KPOSTPICTURE : post.userProfilePictureUrl
+      
+      ]
+        
+        
+ 
+        database.collection(KPOSTS).document(userId).collection(userId).document(post.id).setData(data) { error in
+
+            completion(error == nil)
+
+        }
+        
+
+        
+        
     }
     
     
