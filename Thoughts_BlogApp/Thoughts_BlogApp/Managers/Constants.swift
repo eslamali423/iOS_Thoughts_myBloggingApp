@@ -28,5 +28,6 @@ public let KUSERID = "userId"
 public let KPOSTTEXT = "text"
 public let KPOSTDATE = "date"
 public let KPOSTPICTURE = "image"
+public let KPOSTUSERNAME = "postUserName"
 
 

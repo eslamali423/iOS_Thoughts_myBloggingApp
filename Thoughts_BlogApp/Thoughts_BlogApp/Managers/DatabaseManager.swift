@@ -24,7 +24,7 @@ class DatabaseManager {
     public func getAllPosts ( completion: @escaping ([BlogPost])->Void) {
         
     }
-
+    
     public func getPosts ( user : User, completion: @escaping ([BlogPost])->Void) {
         
     }
@@ -33,19 +33,19 @@ class DatabaseManager {
     
     //MARK:- uploade user data to firestore database after registration statment
     public func saveUserToFirestore (user : User,userId : String , completion: @escaping (Bool)->Void) {
-      let data =  [
-        KUSERNAME  :   user.username,
-        KEMAIL  : user.email,
-        KBIO : user.bio,
-        KPROFILEURL : ""
- 
-      ]
+        let data =  [
+            KUSERNAME  :   user.username,
+            KEMAIL  : user.email,
+            KBIO : user.bio,
+            KPROFILEURL : ""
+            
+        ]
         database.collection(KUSERS).document(userId).setData(data) { error in
             completion(error == nil)
             
         }
     }
-
+    
     
     //MARK:- download user data form firestore database after login statment
     func downloadUserFormFirestore(userID : String, completion: @escaping (User?)->Void)  {
@@ -55,15 +55,15 @@ class DatabaseManager {
                 print(error?.localizedDescription)
                 return
             }
-           
+            
             let username =  document[KUSERNAME]
             let email = document[KEMAIL]
             let bio = document[KBIO]
             let profileUrl = document[KPROFILEURL]
             let user =  User(username: username!, email: email!, bio: bio!, profilePictureUrl: profileUrl!)
-          
+            
             completion(user)
-   
+            
         }
     }
     
@@ -73,7 +73,7 @@ class DatabaseManager {
             let data = try  JSONEncoder().encode(user)
             UserDefaults.standard.set(data, forKey: KCURRENTUSER)
             UserDefaults.standard.set( userId ,forKey: KCURRENTUSERID)
-    //        UserDefaults.standard.set( userId ,forKey: KCURRENTUSERNAME)
+            //        UserDefaults.standard.set( userId ,forKey: KCURRENTUSERNAME)
             
             
         }catch {
@@ -83,25 +83,61 @@ class DatabaseManager {
     
     //MARK:- Save Post To Firestore
     func savePostToFirestore(userId : String, post: BlogPost ,completion: @escaping (Bool)->Void)  {
-      let data = [
-        KPOSTID : post.id,
-        KUSERID : userId,
-        KPOSTTEXT  : post.text,
-        KPOSTDATE : "\(post.date)",
-        KPOSTPICTURE : post.userProfilePictureUrl
-      
-      ]
+        let data = [
+            KPOSTID : post.id,
+            KPOSTUSERNAME : post.username,
+            KPOSTTEXT  : post.text,
+            KPOSTDATE : "\(post.date)",
+            KPOSTPICTURE : post.userProfilePictureUrl
+            
+        ]
         
         
- 
+        
         database.collection(KPOSTS).document(userId).collection(userId).document(post.id).setData(data) { error in
-
+            
             completion(error == nil)
-
+            
         }
         
-
+    }
+    
+    //MARK:- Download User Post From Firestore
+    
+    func dowloadPostsFormFirestore(userId : String, completion: @escaping ([BlogPost])->Void)  {
         
+        database.collection(KPOSTS).document(userId).collection(userId).getDocuments { (snapshot, error) in
+            
+            guard let documents = snapshot?.documents.compactMap({$0.data()}), error == nil else {
+                print("no data Found")
+                print(error?.localizedDescription)
+                return
+            }
+            let posts : [BlogPost] = documents.compactMap({ dictionary in
+                
+                guard let id =  dictionary[KPOSTID] as? String,
+                      let  username =  dictionary[KPOSTUSERNAME] as? String,
+                      let text =  dictionary[KPOSTTEXT] as? String,
+                      let date =   dictionary[KPOSTDATE] as? Date,
+                      let  image =  dictionary[KPOSTPICTURE] as? String else {
+                    return nil
+                }
+                
+                
+                let post = BlogPost(id: id, username: username, userProfilePictureUrl: image, text: text, date: date)
+                return post
+                
+            })
+            completion(posts)
+            
+            
+            
+            
+            //   documents.compactMap{ $0.data()}
+            
+            
+            
+        }
         
     }
     

@@ -6,4 +6,22 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
+class PostViewModel {
+
+//var posts : [BlogPost] = []
+    var posts = BehaviorSubject(value: [BlogPost]())
+
+func fetchPosts()  {
+    guard let currentId = UserDefaults.standard.string(forKey: KCURRENTUSERID) else {
+        return
+    }
+    DatabaseManager.shared.dowloadPostsFormFirestore(userId: currentId) { (queryPosts) in
+        guard queryPosts.count > 0 else {return}
+        self.posts.on(.next(queryPosts))
+    }
+    
+}
+}

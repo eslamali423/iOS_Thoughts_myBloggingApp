@@ -361,7 +361,7 @@
                                 <rect key="frame" x="0.0" y="358.5" width="414" height="454.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="kai-zV-dFD">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="kai-zV-dFD" customClass="PostsTableViewCell" customModule="Thoughts_BlogApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kai-zV-dFD" id="fnc-pN-TZ4">
@@ -407,7 +407,7 @@
                     <connections>
                         <outlet property="BioLabel" destination="wcF-9M-4w1" id="bak-US-2tz"/>
                         <outlet property="profilePictureImageView" destination="yIS-I5-KTY" id="rQ9-we-uoV"/>
-                        <outlet property="tableView" destination="qpd-dI-9Dl" id="0hX-IX-Amp"/>
+                        <outlet property="tableView" destination="qpd-dI-9Dl" id="HGU-gJ-g3w"/>
                         <outlet property="usernameLabel" destination="Giz-qn-db1" id="1Fo-Ck-SHi"/>
                     </connections>
                 </viewController>

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class ProfileViewController: UIViewController {
     
@@ -14,55 +16,64 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var BioLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
+    
+  
    
     @IBOutlet weak var profilePictureImageView: UIImageView!
-    var viewModel = ProfileViewModel()
-
+    
+    var profileViewModel = ProfileViewModel()
+    var postViewModel = PostViewModel()
+    
+    var bag = DisposeBag()
     
     //MARK:- Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         profilePictureImageView.layer.cornerRadius = profilePictureImageView.frame.size.width / 2
-        viewModel.fetchData()
+        profileViewModel.fetchData()
         getUserData()
+        bindTableView()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.fetchData()
+        profileViewModel.fetchData()
+        postViewModel.fetchPosts()
         getUserData()
         
     }
-  
+    
     
     
     //MARK:- Get User Data Form Firestore
     func getUserData()  {
-       
-            DispatchQueue.main.async { [self] in
-                self.usernameLabel.text = self.viewModel.currentUser?.username
-                self.BioLabel.text = self.viewModel.currentUser?.bio
+        
+        DispatchQueue.main.async { [self] in
+            self.usernameLabel.text = self.profileViewModel.currentUser?.username
+            self.BioLabel.text = self.profileViewModel.currentUser?.bio
             
-                if viewModel.currentUser?.profilePictureUrl != ""   {
-                    guard let url = viewModel.currentUser?.profilePictureUrl else {
-                        return
-                    }
-                    StorageManager.shared.downloadImage(imageUrl: url) { (image) in
-                        self.profilePictureImageView.image = image
-                    }
-                    
-                    
+            if profileViewModel.currentUser?.profilePictureUrl != ""   {
+                guard let url = profileViewModel.currentUser?.profilePictureUrl else {
+                    return
                 }
-                    
-                
-            
+                StorageManager.shared.downloadImage(imageUrl: url) { (image) in
+                    self.profilePictureImageView.image = image
+                }
             }
+     
+        }
+
+    }
+    //MARK:- TableView
+    func bindTableView()  {
+        postViewModel.posts.bind(to: tableView.rx.items(cellIdentifier: "cell",cellType: UITableViewCell.self))
+        { row , postItem , cell in
+            cell.textLabel?.text = postItem.username
+            cell.detailTextLabel?.text = postItem.text
             
-            
-        
-        
+        }.disposed(by: bag)
     }
     
     
@@ -72,3 +83,5 @@ class ProfileViewController: UIViewController {
         navigationController?.pushViewController(settingVC, animated: true)
     }
 }
+
+
