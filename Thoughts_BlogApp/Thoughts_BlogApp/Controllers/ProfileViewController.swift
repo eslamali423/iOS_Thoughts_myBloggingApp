@@ -14,48 +14,52 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var BioLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
-    var currentUser : User?
+   
+    var viewModel = ProfileViewModel()
+    
     
     //MARK:- Life Cycle
     @IBOutlet weak var profilePictureImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // usernameLabel.text = UserDefaults.standard.string(forKey: KCURRENTUSEREMAIL)  ?? ""
-       
+        
+        viewModel.fetchData()
         getUserData()
-       // print(UserDefaults.standard.string(forKey: KCURRENTUSERID)!)
+        
     }
     
     
     //MARK:- Get User Data Form Firestore
     func getUserData()  {
         if let data =  UserDefaults.standard.data(forKey: KCURRENTUSER)  {
-            do {
-                self.currentUser = try JSONDecoder().decode(User.self, from: data)
+            
+            DispatchQueue.main.async { [self] in
+                self.usernameLabel.text = self.viewModel.currentUser?.username
+                self.BioLabel.text = self.viewModel.currentUser?.bio
                 
-               
-            }catch{
-                print(error.localizedDescription)
+                if viewModel.currentUser?.profilePictureUrl != ""   {
+                    guard let url = viewModel.currentUser?.profilePictureUrl else {
+                        return
+                    }
+                    StorageManager.shared.downloadImage(imageUrl: url) { (image) in
+                        self.profilePictureImageView.image = image
+                    }
+                    
+                    
+                }
+                
             }
+            
+            
         }
         
-        DispatchQueue.main.async {
-            self.usernameLabel.text = self.currentUser?.username
-            self.BioLabel.text = self.currentUser?.bio
-        }
-        
-//        DatabaseManager.shared.downloadUserFormFirestore(userID: UserDefaults.standard.string(forKey: KCURRENTUSERID)!) { (user) in
-//            guard let user = user else  {
-//                return
-//            }
-//            DispatchQueue.main.async {
-//                self.BioLabel.text = user.bio
-//                self.usernameLabel.text = user.username
-//
-//            }
-//        }
     }
     
     
+    @IBAction func settingsButton(_ sender: Any) {
+        let settingVC = storyboard?.instantiateViewController(identifier: "SettingsTableViewController") as! SettingsTableViewController
+        settingVC.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(settingVC, animated: true)
+    }
 }
