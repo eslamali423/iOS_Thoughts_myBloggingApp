@@ -26,7 +26,7 @@ class SignUpViewController: UIViewController {
         
     }
     
-    
+    //MARK:- Configure Layouts 
     func configureLayouts()  {
         emailField.autocapitalizationType = .none
         emailField.autocorrectionType = .no

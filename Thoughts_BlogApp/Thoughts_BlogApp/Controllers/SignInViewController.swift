@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 
 class SignInViewController: UIViewController {
-
+    
     
     //MARK:- Outlets
     @IBOutlet weak var loginButton: UIButton!
@@ -22,14 +22,14 @@ class SignInViewController: UIViewController {
         configureLayouts()
         
     }
-    
+    //MARK:- Configure Layouts
     func configureLayouts()  {
         emailField.autocapitalizationType = .none
         emailField.autocorrectionType = .no
         passwordField.autocapitalizationType = .none
         passwordField.autocorrectionType = .no
         loginButton.layer.cornerRadius = 20
-
+        
     }
     
     
@@ -42,14 +42,22 @@ class SignInViewController: UIViewController {
         AuthManager.shared.signIn(email: email, password: password) { (isSuccess, currentUserId) in
             if isSuccess && currentUserId != "" {
                 DispatchQueue.main.async {
-                    UserDefaults.standard.setValue( currentUserId ,forKey: KCURRENTUSERID)
+                   // set values in user defaults
+                    DatabaseManager.shared.downloadUserFormFirestore(userID: currentUserId) { (user) in
+                        guard let user =  user  else {return}
+                        DatabaseManager.shared.saveUserLocally(user)
+                    }
+                    
+//                    UserDefaults.standard.set( currentUserId ,forKey: KCURRENTUSERID)
+//                    UserDefaults.standard.set( email ,forKey: KCURRENTUSEREMAIL)
+                    
                     print("\(currentUserId)")
                     let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as!
-                       TabBarViewController
+                        TabBarViewController
                     tabBarVC.modalPresentationStyle = .fullScreen
                     self.present(tabBarVC, animated: true)
                 }
-               
+                
             }
         }
         
@@ -57,21 +65,13 @@ class SignInViewController: UIViewController {
     }
     
     
-//MARK:- Did tap Create User Button
+    //MARK:- Did tap Create User Button
     @IBAction func createUserButton(_ sender: Any) {
         let registrationVc = storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
         present(registrationVc, animated: true)
-     
+        
     }
-  
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
+    
 }

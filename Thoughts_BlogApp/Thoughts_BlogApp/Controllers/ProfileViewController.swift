@@ -8,22 +8,54 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    
+    
+    //MARK:- Outlets
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var BioLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
+    var currentUser : User?
+    
+    //MARK:- Life Cycle
+    @IBOutlet weak var profilePictureImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // usernameLabel.text = UserDefaults.standard.string(forKey: KCURRENTUSEREMAIL)  ?? ""
+       
+        getUserData()
+       // print(UserDefaults.standard.string(forKey: KCURRENTUSERID)!)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    //MARK:- Get User Data Form Firestore
+    func getUserData()  {
+        if let data =  UserDefaults.standard.data(forKey: KCURRENTUSER)  {
+            do {
+                self.currentUser = try JSONDecoder().decode(User.self, from: data)
+                
+               
+            }catch{
+                print(error.localizedDescription)
+            }
+        }
+        
+        DispatchQueue.main.async {
+            self.usernameLabel.text = self.currentUser?.username
+            self.BioLabel.text = self.currentUser?.bio
+        }
+        
+//        DatabaseManager.shared.downloadUserFormFirestore(userID: UserDefaults.standard.string(forKey: KCURRENTUSERID)!) { (user) in
+//            guard let user = user else  {
+//                return
+//            }
+//            DispatchQueue.main.async {
+//                self.BioLabel.text = user.bio
+//                self.usernameLabel.text = user.username
+//
+//            }
+//        }
     }
-    */
-
+    
+    
 }
