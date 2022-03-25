@@ -37,7 +37,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        createPostButton.frame = CGRect(x: view.frame.width - 80 - 16, y: view.frame.height - 80 - 16 - view.safeAreaInsets.bottom, width: 70  , height: 70)
+        createPostButton.frame = CGRect(x: view.frame.width - 90, y: view.frame.height - 90 - view.safeAreaInsets.bottom, width: 70  , height: 70)
     }
     
     @IBAction func logoutButton(_ sender: Any) {

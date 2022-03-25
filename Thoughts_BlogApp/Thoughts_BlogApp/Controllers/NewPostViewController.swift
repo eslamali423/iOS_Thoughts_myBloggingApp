@@ -33,7 +33,7 @@ class NewPostViewController: UIViewController {
             
             guard let currentUser = user else {return}
             
-            let newPost =  BlogPost(postId: UUID().uuidString, postUserName: currentUser.username, image: currentUser.profilePictureUrl, text: postText , date: Date())
+            let newPost =  BlogPost(postId: UUID().uuidString,userId: currentId ,postUserName: currentUser.username, image: currentUser.profilePictureUrl, text: postText , date: "\(Date())")
             DatabaseManager.shared.savePostToFirestore(userId: currentId, post: newPost) { (isSuccess) in
                 if isSuccess {
                     print("Posts added to firebase")

@@ -24,11 +24,12 @@ public let KPOSTS = "Posts"
 
 
 public let KPOSTID = "postId"
-public let KUSERID = "userId"
 public let KPOSTTEXT = "text"
 public let KPOSTDATE = "date"
 public let KPOSTPICTURE = "image"
 public let KPOSTUSERNAME = "postUserName"
+public let KPOSTUSERID = "userId"
+
 
 
     

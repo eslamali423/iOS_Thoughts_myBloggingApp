@@ -20,9 +20,14 @@ func fetchPosts()  {
     }
     print("fetching posts in viewmModel")
    
+  
+    
+    
     DatabaseManager.shared.dowloadPostsFormFirestore(userId: currentId) { (queryPosts) in
      //   guard queryPosts.count > 0 else {return}
+      
         self.posts.on(.next(queryPosts))
+        print(queryPosts.count)
         //print(queryPosts)
     }
     

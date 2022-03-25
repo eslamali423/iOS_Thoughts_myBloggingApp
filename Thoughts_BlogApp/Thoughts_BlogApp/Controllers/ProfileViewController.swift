@@ -68,11 +68,13 @@ class ProfileViewController: UIViewController {
     }
     //MARK:- TableView
     func bindTableView()  {
-        postViewModel.posts.bind(to: tableView.rx.items(cellIdentifier: "cell",cellType: UITableViewCell.self))
+        postViewModel.posts.bind(to: tableView.rx.items(cellIdentifier: "cell",cellType: PostsTableViewCell.self))
         { row , postItem , cell in
-            cell.textLabel?.text = postItem.postUserName
-            cell.detailTextLabel?.text = postItem.text
-            
+          
+            cell.configureCell(post: postItem)
+//            cell.textLabel?.text = postItem.postUserName
+//            cell.detailTextLabel?.text = postItem.text
+//            
         }.disposed(by: bag)
     }
     

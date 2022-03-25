@@ -9,13 +9,14 @@ import Foundation
 import FirebaseFirestoreSwift
 import Firebase
 
-struct BlogPost : Codable, Equatable {
+struct BlogPost : Codable {
    
     let postId : String
+    let userId : String
     let postUserName : String
     let image : String
     let text : String
-    let date : Date
+    let date : String
     
 }
 
