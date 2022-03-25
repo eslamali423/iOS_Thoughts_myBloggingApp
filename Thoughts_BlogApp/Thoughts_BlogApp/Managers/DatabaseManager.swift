@@ -83,18 +83,17 @@ class DatabaseManager {
     
     //MARK:- Save Post To Firestore
     func savePostToFirestore(userId : String, post: BlogPost ,completion: @escaping (Bool)->Void)  {
-        let data = [
-            KPOSTID : post.id,
-            KPOSTUSERNAME : post.username,
+        let data : [String : Any] = [
+            KPOSTID : post.postId,
+            KPOSTUSERNAME : post.postUserName,
             KPOSTTEXT  : post.text,
             KPOSTDATE : "\(post.date)",
-            KPOSTPICTURE : post.userProfilePictureUrl
+            KPOSTPICTURE : post.image
             
         ]
         
-        
-        
-        database.collection(KPOSTS).document(userId).collection(userId).document(post.id).setData(data) { error in
+
+        database.collection(KUSERS).document(userId).collection(KPOSTS).document(post.postId).setData(data) { error in
             
             completion(error == nil)
             
@@ -104,32 +103,43 @@ class DatabaseManager {
     
     //MARK:- Download User Post From Firestore
     
-    func dowloadPostsFormFirestore(userId : String, completion: @escaping ([BlogPost])->Void)  {
-        
-        database.collection(KPOSTS).document(userId).collection(userId).getDocuments { (snapshot, error) in
-            
-            guard let documents = snapshot?.documents.compactMap({$0.data()}), error == nil else {
+    func dowloadPostsFormFirestore(userId : String, completion: @escaping ( _ allPosts : [BlogPost])->Void)  {
+    
+        database.collection(KPOSTS).document(userId).collection(KPOSTS).getDocuments { (snapshot, error) in
+         
+            guard let documents = snapshot?.documents , error == nil else {
                 print("no data Found")
-                print(error?.localizedDescription)
                 return
             }
-            let posts : [BlogPost] = documents.compactMap({ dictionary in
-                
-                guard let id =  dictionary[KPOSTID] as? String,
-                      let  username =  dictionary[KPOSTUSERNAME] as? String,
-                      let text =  dictionary[KPOSTTEXT] as? String,
-                      let date =   dictionary[KPOSTDATE] as? Date,
-                      let  image =  dictionary[KPOSTPICTURE] as? String else {
-                    return nil
-                }
-                
-                
-                let post = BlogPost(id: id, username: username, userProfilePictureUrl: image, text: text, date: date)
-                return post
-                
-            })
-            completion(posts)
+            print(documents)
+            let allPosts = documents.compactMap { (snapshot) -> BlogPost? in
+                return try? snapshot.data(as: BlogPost.self)
+            }
+           completion(allPosts)
+            print(allPosts.count)
+  
             
+            
+//            let posts : [BlogPost] = documents.compactMap({ dictionary in
+//
+//                guard let id =  dictionary[KPOSTID] as? String,
+//                      let  username =  dictionary[KPOSTUSERNAME] as? String,
+//                      let text =  dictionary[KPOSTTEXT] as? String,
+//                      let date =   dictionary[KPOSTDATE] as? Date,
+//                      let  image =  dictionary[KPOSTPICTURE] as? String else {
+//               print("error post fetch converstion ")
+//                    return nil
+//                }
+//                print(dictionary["username"])
+//
+//                let post = BlogPost(id: id, username: username, userProfilePictureUrl: image, text: text, date: date )
+//
+//                return post
+//
+//            })
+//            print(posts.count)
+//            completion(posts)
+//
             
             
             

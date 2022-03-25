@@ -6,12 +6,17 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
+import Firebase
 
-struct BlogPost {
-    let id : String
-    let username : String
-    let userProfilePictureUrl : String
+struct BlogPost : Codable, Equatable {
+   
+    let postId : String
+    let postUserName : String
+    let image : String
     let text : String
     let date : Date
     
 }
+
+

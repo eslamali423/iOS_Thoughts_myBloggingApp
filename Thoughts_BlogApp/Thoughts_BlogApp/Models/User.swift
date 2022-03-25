@@ -13,3 +13,5 @@ struct User : Codable{
     var bio : String
     var profilePictureUrl : String
 }
+
+
