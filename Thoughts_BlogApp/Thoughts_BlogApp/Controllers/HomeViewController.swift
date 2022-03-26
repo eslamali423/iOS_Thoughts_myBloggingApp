@@ -6,10 +6,17 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class HomeViewController: UIViewController {
 
     //MARK:- Outlets
+    
+    @IBOutlet weak var tableView: UITableView!
+    var homeViewModel = HomeViewModel()
+    var bag = DisposeBag()
+
     
     private let createPostButton : UIButton = {
         let button = UIButton()
@@ -29,10 +36,8 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(createPostButton)
         title =  "Home"
-        DatabaseManager.shared.downloadAllPostsFromFirestore { (posts) in
-            print("HOOOOMEEEEE PPPOSSSTSSS \(posts.count)")
-            
-        }
+//        homeViewModel.fetchAllPosts()
+//        bindTableView()
         
         
         createPostButton.addTarget(self, action: #selector(didTapCreatePostButton), for: .touchUpInside)
@@ -44,24 +49,26 @@ class HomeViewController: UIViewController {
         createPostButton.frame = CGRect(x: view.frame.width - 90, y: view.frame.height - 90 - view.safeAreaInsets.bottom, width: 70  , height: 70)
     }
     
-    @IBAction func logoutButton(_ sender: Any) {
-       
- 
-    }
-    
+   
+    //MARK:- Configure New Post Button
     @objc func didTapCreatePostButton () {
         let newPostVC =  storyboard?.instantiateViewController(identifier: "NewPostViewController") as! NewPostViewController
         navigationController?.pushViewController(newPostVC, animated: true)
     }
     
-    /*
-    // MARK: - Navigation
+    func bindTableView()  {
+        homeViewModel.posts.bind(to: tableView.rx.items(cellIdentifier: "cell",cellType: PostsTableViewCell.self))
+        { row , postItem , cell in
+          
+            cell.configureCell(post: postItem)
+//            cell.textLabel?.text = postItem.postUserName
+//            cell.detailTextLabel?.text = postItem.text
+//
+        }.disposed(by: bag)
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        
+        
     }
-    */
 
 }

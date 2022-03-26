@@ -30,6 +30,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
+        navigationItem.largeTitleDisplayMode = .never
         profilePictureImageView.layer.cornerRadius = profilePictureImageView.frame.size.width / 2
         profileViewModel.fetchData()
         getUserData()
@@ -72,9 +73,7 @@ class ProfileViewController: UIViewController {
         { row , postItem , cell in
           
             cell.configureCell(post: postItem)
-//            cell.textLabel?.text = postItem.postUserName
-//            cell.detailTextLabel?.text = postItem.text
-//            
+  
         }.disposed(by: bag)
     }
     

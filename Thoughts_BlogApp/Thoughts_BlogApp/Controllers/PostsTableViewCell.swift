@@ -28,6 +28,8 @@ class PostsTableViewCell: UITableViewCell {
                 self.profilePictureImageView.image =  image
             }
             
+        } else {
+            self.profilePictureImageView.image = UIImage(named: "avatar")
         }
         
         
