@@ -23,7 +23,7 @@ func fetchPosts()  {
   
     
     
-    DatabaseManager.shared.dowloadPostsFormFirestore(userId: currentId) { (queryPosts) in
+    DatabaseManager.shared.downloadUserPostsFormFirestore(userId: currentId) { (queryPosts) in
      //   guard queryPosts.count > 0 else {return}
       
         self.posts.on(.next(queryPosts))

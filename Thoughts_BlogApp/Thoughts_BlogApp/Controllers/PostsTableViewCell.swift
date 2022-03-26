@@ -21,6 +21,15 @@ class PostsTableViewCell: UITableViewCell {
         self.usernameLabel.text = post.postUserName
         self.dateLabel.text = "\(post.date)"
         
+        let currentUserId = UserDefaults.standard.string(forKey: KCURRENTUSERID)
+        if post.image != "" {
+            StorageManager.shared.downloadImage(imageUrl: post.image) { (downloadedImage) in
+                guard let image = downloadedImage else {return}
+                self.profilePictureImageView.image =  image
+            }
+            
+        }
+        
         
        
         

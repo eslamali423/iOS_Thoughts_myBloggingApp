@@ -21,7 +21,7 @@ public let KPROFILEURL = "profileUrl"
 public let KCURRENTUSER = "currentUser"
 public let KPOSTS = "Posts"
 
-
+public let KTEXTPOSTS = "TextPosts"
 
 public let KPOSTID = "postId"
 public let KPOSTTEXT = "text"

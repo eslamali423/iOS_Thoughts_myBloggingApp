@@ -369,26 +369,26 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="HRK-ai-gTO">
-                                                    <rect key="frame" x="20" y="11" width="60" height="60"/>
+                                                    <rect key="frame" x="20" y="11" width="40" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="A9O-cV-37f"/>
-                                                        <constraint firstAttribute="width" constant="60" id="s3I-Ue-zMm"/>
+                                                        <constraint firstAttribute="height" constant="40" id="A9O-cV-37f"/>
+                                                        <constraint firstAttribute="width" constant="40" id="s3I-Ue-zMm"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuD-lr-Cxw">
-                                                    <rect key="frame" x="88" y="19" width="176" height="21"/>
+                                                    <rect key="frame" x="68" y="13" width="196" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sH3-Zb-wNw">
-                                                    <rect key="frame" x="88" y="44" width="176" height="18"/>
+                                                    <rect key="frame" x="68" y="38" width="196" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Body" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBw-Bx-qLk">
-                                                    <rect key="frame" x="20" y="81" width="374" height="55"/>
+                                                    <rect key="frame" x="20" y="61" width="374" height="75"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -404,7 +404,7 @@
                                                 <constraint firstItem="sH3-Zb-wNw" firstAttribute="width" secondItem="iuD-lr-Cxw" secondAttribute="width" id="U9O-va-8Ve"/>
                                                 <constraint firstAttribute="bottom" secondItem="EBw-Bx-qLk" secondAttribute="bottom" constant="10" id="dBO-5F-cfl"/>
                                                 <constraint firstItem="sH3-Zb-wNw" firstAttribute="leading" secondItem="iuD-lr-Cxw" secondAttribute="leading" id="dsK-m0-WtF"/>
-                                                <constraint firstItem="iuD-lr-Cxw" firstAttribute="top" secondItem="HRK-ai-gTO" secondAttribute="top" constant="8" id="eoP-P9-jo1"/>
+                                                <constraint firstItem="iuD-lr-Cxw" firstAttribute="top" secondItem="HRK-ai-gTO" secondAttribute="top" constant="2" id="eoP-P9-jo1"/>
                                                 <constraint firstItem="EBw-Bx-qLk" firstAttribute="top" secondItem="HRK-ai-gTO" secondAttribute="bottom" constant="10" id="ex6-h3-4ML"/>
                                                 <constraint firstItem="EBw-Bx-qLk" firstAttribute="leading" secondItem="9fh-ho-wk3" secondAttribute="leading" constant="20" id="mht-Qk-YGT"/>
                                                 <constraint firstAttribute="trailing" secondItem="EBw-Bx-qLk" secondAttribute="trailing" constant="20" id="tKt-Va-meW"/>

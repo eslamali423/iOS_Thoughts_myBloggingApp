@@ -29,6 +29,10 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(createPostButton)
         title =  "Home"
+        DatabaseManager.shared.downloadAllPostsFromFirestore { (posts) in
+            print("HOOOOMEEEEE PPPOSSSTSSS \(posts.count)")
+            
+        }
         
         
         createPostButton.addTarget(self, action: #selector(didTapCreatePostButton), for: .touchUpInside)

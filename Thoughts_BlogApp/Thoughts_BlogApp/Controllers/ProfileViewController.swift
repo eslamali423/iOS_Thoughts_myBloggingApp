@@ -29,7 +29,7 @@ class ProfileViewController: UIViewController {
     //MARK:- Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.tableFooterView = UIView()
         profilePictureImageView.layer.cornerRadius = profilePictureImageView.frame.size.width / 2
         profileViewModel.fetchData()
         getUserData()

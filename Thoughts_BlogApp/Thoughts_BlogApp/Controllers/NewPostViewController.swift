@@ -16,7 +16,7 @@ class NewPostViewController: UIViewController {
         super.viewDidLoad()
         title = "Create A new Post"
         navigationItem.largeTitleDisplayMode = .never
-        postButton.layer.shadowRadius = postButton.frame.size.width / 2
+        postButton.layer.cornerRadius = 20
         
         
     }

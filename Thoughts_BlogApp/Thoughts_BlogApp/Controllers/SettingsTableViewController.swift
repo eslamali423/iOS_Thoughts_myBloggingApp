@@ -156,7 +156,7 @@ class SettingsTableViewController: UITableViewController {
                 print("cant get the link")
                 return
             }
-            print(downloadUrl)
+            print("Downloaded URL :::: \(downloadUrl)")
 
             guard var currentUser =  self.viewModel.currentUser else {return}
             currentUser.profilePictureUrl = downloadUrl

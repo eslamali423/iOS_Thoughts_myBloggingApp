@@ -41,7 +41,7 @@ class DatabaseManager {
             KUSERNAME  :   user.username,
             KEMAIL  : user.email,
             KBIO : user.bio,
-            KPROFILEURL : ""
+            KPROFILEURL : user.profilePictureUrl
             
         ]
         database.collection(KUSERS).document(userId).setData(data) { error in
@@ -100,7 +100,9 @@ class DatabaseManager {
             
         ]
         
-        database.collection(KPOSTS).document(userId).collection("TextPosts").document().setData(data) { error in
+        
+        
+        database.collection(KPOSTS).document(KTEXTPOSTS).collection(userId).document(post.postId).setData(data) { error in
             
             completion(error == nil)
             
@@ -110,9 +112,9 @@ class DatabaseManager {
     
     //MARK:- Download User Post From Firestore
     
-    func dowloadPostsFormFirestore(userId : String, completion: @escaping ( _ allPosts : [BlogPost])->Void)  {
+    func downloadUserPostsFormFirestore(userId : String, completion: @escaping ( _ allPosts : [BlogPost])->Void)  {
         
-        database.collection(KPOSTS).document(userId).collection("TextPosts").getDocuments { querySnapshot, error in
+        database.collection(KPOSTS).document(KTEXTPOSTS).collection(userId).getDocuments { querySnapshot, error in
             //var posts : [BlogPost] = []
         
    
@@ -133,13 +135,42 @@ class DatabaseManager {
                                return post
             })
             completion(posts)
-            print(posts.count)
+           // print(posts.count)
             
+        }
+    }
+    
+    
+    //MARK:- Download All Posts form Firestore
+    func downloadAllPostsFromFirestore (completion : @escaping ([BlogPost])->Void) {
+        database.collection(KUSERS).getDocuments { (snapshot, error) in
+            guard let documents =  snapshot?.documents, error == nil else {return}
+            var allPosts : [BlogPost] = []
+            for document in documents {
+
+              if document == document {
+                print("IIIIDDDDD:::::::: \(document.documentID)")
+                DatabaseManager.shared.downloadUserPostsFormFirestore(userId: document.documentID) { (downloadedPosts) in
+                    guard downloadedPosts != nil  else {return}
+                   // print(downloadedPosts.count)
+                    if downloadedPosts.count > 0 {
+                        allPosts.append(contentsOf: downloadedPosts)
+                        completion(allPosts)
+                    }
+                    
+
+                }
+                 }
+                   }
+          //  completion(allPosts)
+            
+            
+        }
         }
     }
           
         
-}
+
         
         
            
