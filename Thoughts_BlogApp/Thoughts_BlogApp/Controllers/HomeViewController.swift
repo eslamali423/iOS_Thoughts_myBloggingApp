@@ -34,10 +34,14 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        tableView.tableFooterView = UIView()
         view.addSubview(createPostButton)
         title =  "Home"
-//        homeViewModel.fetchAllPosts()
-//        bindTableView()
+       
+        
+        homeViewModel.fetchAllPosts()
+        bindTableView()
         
         
         createPostButton.addTarget(self, action: #selector(didTapCreatePostButton), for: .touchUpInside)
@@ -57,7 +61,7 @@ class HomeViewController: UIViewController {
     }
     
     func bindTableView()  {
-        homeViewModel.posts.bind(to: tableView.rx.items(cellIdentifier: "cell",cellType: PostsTableViewCell.self))
+        homeViewModel.posts.bind(to: tableView.rx.items(cellIdentifier: "HomeTableViewCell",cellType: HomeTableViewCell.self))
         { row , postItem , cell in
           
             cell.configureCell(post: postItem)

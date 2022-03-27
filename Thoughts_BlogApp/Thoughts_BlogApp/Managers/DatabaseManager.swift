@@ -96,7 +96,8 @@ class DatabaseManager {
             KPOSTTEXT  : post.text,
             KPOSTDATE : (post.date),
             KPOSTPICTURE : post.image,
-            KPOSTUSERID : userId
+            KPOSTUSERID : userId,
+            KPOSTLIKESCOUNTER : post.likesCounter
             
         ]
         
@@ -126,12 +127,13 @@ class DatabaseManager {
                                let  username =  dictionary[KPOSTUSERNAME] as? String,
                                let text =  dictionary[KPOSTTEXT] as? String,
                                let date =   dictionary[KPOSTDATE] as? String,
+                               let counter =  dictionary[KPOSTLIKESCOUNTER] as? Int,
                                let  image =  dictionary[KPOSTPICTURE] as? String else {
                         print("error post fetch converstion ")
                              return nil
                          }
                        
-                let post = BlogPost(postId: id,userId: postUserId ,postUserName: username, image: image, text: text, date: date)
+                let post = BlogPost(postId: id,userId: postUserId ,postUserName: username, image: image, text: text, date: date, likesCounter: counter)
                                return post
             })
             completion(posts)

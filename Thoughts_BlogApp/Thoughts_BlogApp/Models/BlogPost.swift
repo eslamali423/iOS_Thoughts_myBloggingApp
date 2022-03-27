@@ -17,6 +17,7 @@ struct BlogPost : Codable {
     let image : String
     let text : String
     let date : String
+    let likesCounter : Int 
     
 }
 

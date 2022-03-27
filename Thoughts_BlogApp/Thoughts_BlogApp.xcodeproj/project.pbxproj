@@ -24,6 +24,7 @@
 		284C4FAE27EB715E003C38E9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284C4FAD27EB715E003C38E9 /* SignUpViewController.swift */; };
 		284C4FB127EB71DB003C38E9 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284C4FB027EB71DB003C38E9 /* TabBarViewController.swift */; };
 		2878169A27EFA9EF00008FA2 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2878169927EFA9EF00008FA2 /* HomeViewModel.swift */; };
+		287816A427F09A9900008FA2 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287816A327F09A9900008FA2 /* HomeTableViewCell.swift */; };
 		289E2DEC27EB7F1B0019EE75 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289E2DEB27EB7F1B0019EE75 /* User.swift */; };
 		289E2DEF27EB7F5D0019EE75 /* BlogPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289E2DEE27EB7F5D0019EE75 /* BlogPost.swift */; };
 		289E2DF327EB9ED50019EE75 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289E2DF227EB9ED50019EE75 /* Constants.swift */; };
@@ -55,6 +56,7 @@
 		284C4FAD27EB715E003C38E9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		284C4FB027EB71DB003C38E9 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		2878169927EFA9EF00008FA2 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		287816A327F09A9900008FA2 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		289E2DEB27EB7F1B0019EE75 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		289E2DEE27EB7F5D0019EE75 /* BlogPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogPost.swift; sourceTree = "<group>"; };
 		289E2DF227EB9ED50019EE75 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				28F710BF27EC954900AE22D5 /* SettingsTableViewController.swift */,
 				28F710F627ECCE0900AE22D5 /* NewPostViewController.swift */,
 				28F7113027ECFFFD00AE22D5 /* PostsTableViewCell.swift */,
+				287816A327F09A9900008FA2 /* HomeTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				284C4F8527EB6C90003C38E9 /* SceneDelegate.swift in Sources */,
 				28F710C027EC954900AE22D5 /* SettingsTableViewController.swift in Sources */,
 				289E2DF327EB9ED50019EE75 /* Constants.swift in Sources */,
+				287816A427F09A9900008FA2 /* HomeTableViewCell.swift in Sources */,
 				2878169A27EFA9EF00008FA2 /* HomeViewModel.swift in Sources */,
 				284C4FA127EB70CF003C38E9 /* HomeViewController.swift in Sources */,
 				284C4FA827EB7146003C38E9 /* AuthManager.swift in Sources */,

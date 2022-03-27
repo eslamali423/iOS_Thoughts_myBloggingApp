@@ -29,7 +29,7 @@ public let KPOSTDATE = "date"
 public let KPOSTPICTURE = "image"
 public let KPOSTUSERNAME = "postUserName"
 public let KPOSTUSERID = "userId"
-
+public let KPOSTLIKESCOUNTER = "likesCounter"
 
 
     

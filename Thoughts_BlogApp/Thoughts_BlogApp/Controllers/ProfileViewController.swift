@@ -30,6 +30,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
+        
         navigationItem.largeTitleDisplayMode = .never
         profilePictureImageView.layer.cornerRadius = profilePictureImageView.frame.size.width / 2
         profileViewModel.fetchData()
