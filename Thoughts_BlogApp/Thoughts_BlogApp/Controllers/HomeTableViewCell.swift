@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class HomeTableViewCell: UITableViewCell {
 
     //MARK:- Outlets
@@ -56,7 +57,15 @@ class HomeTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+ 
     @IBAction func likeButton(_ sender: Any) {
+        
+        let image =  UIImage(systemName: "heart.fill")
+    
+        self.likeButton.setImage(image, for: .normal)
+        
+        
+        
     }
     
 }
